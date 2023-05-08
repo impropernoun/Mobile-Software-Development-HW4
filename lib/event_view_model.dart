@@ -1,6 +1,6 @@
 // Castel Villalobos
 // event_view_model.dart
-// 4/21/2023
+// 5/7/2023
 
 import 'package:flutter/widgets.dart';
 import 'event.dart';

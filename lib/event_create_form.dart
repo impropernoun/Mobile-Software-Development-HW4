@@ -1,14 +1,11 @@
 // Castel Villalobos
 // event_create_form.dart
-// 4/21/2023
+// 5/7/2023
 
 import 'package:flutter/material.dart';
 import 'event_view_model.dart';
 import 'event.dart';
 import 'package:intl/intl.dart';
-
-
-bool isShowingList = false;
 
 class EventCreateForm extends StatefulWidget {
   final OrderViewModel orderViewModel;
@@ -19,8 +16,6 @@ class EventCreateForm extends StatefulWidget {
 }
 
 class _EventCreateFormState extends State<EventCreateForm> {
-
-
   final _formKey = GlobalKey<FormState>();
 
   final _titleController = TextEditingController(text: null);
@@ -44,7 +39,6 @@ class _EventCreateFormState extends State<EventCreateForm> {
   String? _validateDescription(String? description) {
     if(description == null || description.isEmpty) {
       return 'Please fill in a description.';
-      // TODO proper error message
     }
     _description = description;
     return null;
@@ -59,7 +53,7 @@ class _EventCreateFormState extends State<EventCreateForm> {
     }
     else{
       if(_formKey.currentState!.validate()) {
-         var event = Event(
+        var event = Event(
             _title!,
             _description!,
             _startDay,
@@ -69,13 +63,7 @@ class _EventCreateFormState extends State<EventCreateForm> {
         );
 
         widget.orderViewModel.addEvent(event);
-
-        // TODO doesn't work, should go back to form page
-         setState(() {
-           isShowingList = false;
-         });
-
-         _formKey.currentState!.reset();
+        _formKey.currentState!.reset();
       }
     }
   }
@@ -108,7 +96,6 @@ class _EventCreateFormState extends State<EventCreateForm> {
     }
   }
 
-
   _selectEndDate() async {
     final DateTime? datePicked = await showDatePicker(
         context: context,
@@ -139,55 +126,55 @@ class _EventCreateFormState extends State<EventCreateForm> {
 
   @override
   Widget build(BuildContext context) {
+
     return Flexible(
-      child: SingleChildScrollView(
-          child:  Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Title'),
-                  controller: _titleController,
-                  validator: _validateTitle,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Brief Description'),
-                  controller: _descriptionController,
-                  validator: _validateDescription,
-                ),
+        child: SingleChildScrollView(
+            child:  Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: 'Title'),
+                      controller: _titleController,
+                      validator: _validateTitle,
+                    ),
+                    TextFormField(
+                      maxLines: 3,
+                      decoration: const InputDecoration(labelText: 'Brief Description'),
+                      controller: _descriptionController,
+                      validator: _validateDescription,
+                    ),
 
-                const Text('Start date'),
-                OutlinedButton(
-                  onPressed: () => _selectStartDate(),
-                  child: Text(DateFormat.yMEd().format(_startDay)),
-                ),
-                const Text('Start time'),
-                OutlinedButton(
-                  onPressed: () => _selectStartTime(),
-                  child: Text('${_startTime.hour}: ${_startTime.minute}'),
-                ),
+                    const Text('Start date'),
+                    OutlinedButton(
+                      onPressed: () => _selectStartDate(),
+                      child: Text(DateFormat.yMEd().format(_startDay)),
+                    ),
+                    const Text('Start time'),
+                    OutlinedButton(
+                      onPressed: () => _selectStartTime(),
+                      child: Text('${_startTime.hour}: ${_startTime.minute}'),
+                    ),
 
-                const Text('End date'),
-                OutlinedButton(
-                    onPressed: () => _selectEndDate(),
-                    child: Text(DateFormat.yMEd().format(_endDay))
-                ),
-                const Text('End time'),
-                OutlinedButton(
-                  onPressed: () => _selectEndTime(),
-                  child: Text('${_endTime.hour}: ${_endTime.minute}'),
-                ),
+                    const Text('End date'),
+                    OutlinedButton(
+                        onPressed: () => _selectEndDate(),
+                        child: Text(DateFormat.yMEd().format(_endDay))
+                    ),
+                    const Text('End time'),
+                    OutlinedButton(
+                      onPressed: () => _selectEndTime(),
+                      child: Text('${_endTime.hour}: ${_endTime.minute}'),
+                    ),
 
-                 ElevatedButton(
-                    onPressed: _submit,
-                    child: const Text('Create event')
+                    ElevatedButton(
+                        onPressed: _submit,
+                        child: const Text('Create event')
+                    )
+                  ],
                 )
-              ],
             )
         )
-      )
     );
-
   }
 }
-
