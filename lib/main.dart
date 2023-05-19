@@ -1,16 +1,30 @@
 // Castel Villalobos
 // main.dart
-// 5/7/2023
+// 5/18/2023
 
 import 'package:flutter/material.dart';
 import 'event_create_form.dart';
 import 'event_view_model.dart';
 import 'event_list.dart';
+import 'event_database.dart';
 
 // TODO LIST:
 // No event edit function
 // No events filter functionality
 // Add page does not give success/failure messages
+
+// ALSO TODO LIST:
+// click on event to open details
+//  - edit function will go here
+
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   final database = await $FloorAppDatabase.databaseBuilder('edmt database.db').build();
+//   final dao = database.eventDAO;
+//
+//     runApp(const MyApp());
+//
+// }
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +45,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

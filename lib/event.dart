@@ -1,18 +1,23 @@
 // Castel Villalobos
 // event.dart
-// 5/7/2023
+// 5/18/2023
 
 import 'package:flutter/material.dart';
+import 'package:floor/floor.dart';
 
+@entity
 class Event {
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
   String title;
   String description;
-  DateTime startDay;
+
+  String startDay; // Floor does not support DateTime, unable to run generator
   TimeOfDay startTime;
-  DateTime endDay;
+  String endDay;
   TimeOfDay endTime;
 
-  Event(this.title, this.description, this.startDay, this.startTime, this.endDay, this.endTime);
+  Event(this.id, this.title, this.description, this.startDay, this.startTime, this.endDay, this.endTime);
 
   @override
   String toString() {

@@ -1,6 +1,6 @@
 // Castel Villalobos
 // event_create_form.dart
-// 5/7/2023
+// 5/18/2023
 
 import 'package:flutter/material.dart';
 import 'event_view_model.dart';
@@ -21,6 +21,7 @@ class _EventCreateFormState extends State<EventCreateForm> {
   final _titleController = TextEditingController(text: null);
   final _descriptionController = TextEditingController(text: null);
 
+  int? _id;
   String? _title;
   String? _description;
   DateTime _startDay = DateTime.now();
@@ -54,11 +55,12 @@ class _EventCreateFormState extends State<EventCreateForm> {
     else{
       if(_formKey.currentState!.validate()) {
         var event = Event(
+            _id,
             _title!,
             _description!,
-            _startDay,
+            _startDay.toString(),
             _startTime,
-            _endDay,
+            _endDay.toString(),
             _endTime
         );
 

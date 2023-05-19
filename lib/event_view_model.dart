@@ -1,6 +1,6 @@
 // Castel Villalobos
 // event_view_model.dart
-// 5/7/2023
+// 5/18/2023
 
 import 'package:flutter/widgets.dart';
 import 'event.dart';
@@ -35,14 +35,14 @@ class OrderViewModel extends ChangeNotifier {
       _events.map(
               (event) =>
               DateTime(
-                  event.startDay.year, event.startDay.month, event.startDay.day,
+                  DateTime.parse(event.startDay).year, DateTime.parse(event.startDay).month, DateTime.parse(event.startDay).day,
                   event.startTime.hour, event.startTime.minute)
       ).toList();
 
   List<DateTime> get eventEnds =>
       _events.map(
               (event) =>
-              DateTime(event.endDay.year, event.endDay.month, event.endDay.day,
+              DateTime(DateTime.parse(event.endDay).year, DateTime.parse(event.endDay).month, DateTime.parse(event.endDay).day,
                   event.endTime.hour, event.endTime.minute)
       ).toList();
 }

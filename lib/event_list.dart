@@ -1,6 +1,6 @@
 // Castel Villalobos
 // event_list.dart
-// 5/7/2023
+// 5/18/2023
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +8,6 @@ import 'event_view_model.dart';
 
 class EventList extends StatelessWidget {
   final OrderViewModel orderViewModel;
-  //     final orderViewModel = context.watch<OrderViewModel>();
 
   const EventList({super.key, required this.orderViewModel});
 
@@ -16,7 +15,6 @@ class EventList extends StatelessWidget {
     orderViewModel.removeEvent(index);
   }
 
-  // TODO edit tab, bring back to event maker page with all data saved?
   _onEdit(int index) {
     // jump to event_edit_form page
   }
